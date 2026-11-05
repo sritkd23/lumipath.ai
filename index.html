@@ -3,53 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LumiPath AI Dashboard</title>
+  <title>LumiPath AI - Dark Mode</title>
   <style>
     :root {
-      --deep-plum: #25183F;
-      --primary-purple: #8054C7;
-      --lavender: #C5A9F5;
-      --soft-lilac: #F4EEFF;
-      --white: #FFFFFF;
+      /* Dark Theme Palette */
+      --bg-dark: #120A1F;
+      --card-dark: #1F1433;
+      --deep-plum: #2D1A4A;
+      --primary-purple: #9D74E3;
+      --lavender: #D8B4FE;
+      --text-main: #FFFFFF;
+      --text-muted: #B3A4C9;
     }
     
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: var(--soft-lilac);
-      color: var(--deep-plum);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       display: flex;
       flex-direction: column;
       height: 100vh;
+      font-weight: 600; /* Made everything bolder */
+      overflow: hidden;
     }
 
     /* Top Navigation */
     .top-nav {
-      background-color: var(--white);
+      background-color: var(--card-dark);
       padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(37, 24, 63, 0.05);
+      border-bottom: 2px solid var(--deep-plum);
       z-index: 10;
     }
 
     .brand {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--primary-purple);
+      font-size: 22px;
+      font-weight: 900; /* Extra bold for logo */
+      color: var(--lavender);
       margin: 0;
     }
 
     .profile-pic {
-      width: 36px;
-      height: 36px;
-      background-color: var(--lavender);
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-purple);
+      color: var(--bg-dark);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: bold;
+      font-weight: 800;
+      font-size: 18px;
     }
 
     /* Main Dashboard Area */
@@ -57,18 +64,20 @@
       padding: 20px;
       flex-grow: 1;
       overflow-y: auto;
-      padding-bottom: 80px; /* Space for bottom nav */
+      padding-bottom: 100px;
     }
 
     .welcome-text {
-      font-size: 24px;
+      font-size: 26px;
+      font-weight: 800;
       margin: 0 0 5px 0;
     }
 
     .subtitle {
-      color: #666;
-      font-size: 14px;
+      color: var(--text-muted);
+      font-size: 15px;
       margin: 0 0 20px 0;
+      font-weight: 600;
     }
 
     /* Upload Card */
@@ -76,84 +85,89 @@
       background: linear-gradient(135deg, var(--primary-purple), var(--deep-plum));
       border-radius: 20px;
       padding: 24px;
-      color: var(--white);
       text-align: center;
-      box-shadow: 0 8px 20px rgba(128, 84, 199, 0.3);
+      box-shadow: 0 8px 20px rgba(157, 116, 227, 0.2);
       margin-bottom: 24px;
     }
 
     .upload-icon {
-      font-size: 32px;
+      font-size: 36px;
       margin-bottom: 10px;
     }
 
     .upload-card h3 {
       margin: 0 0 8px 0;
-      font-size: 18px;
+      font-size: 20px;
+      font-weight: 800;
     }
 
     .upload-card p {
-      font-size: 13px;
+      font-size: 14px;
       opacity: 0.9;
       margin: 0 0 16px 0;
     }
 
     .upload-btn {
-      background-color: var(--white);
-      color: var(--primary-purple);
-      border: none;
-      padding: 10px 20px;
+      background-color: var(--bg-dark);
+      color: var(--lavender);
+      border: 2px solid var(--lavender);
+      padding: 12px 20px;
       border-radius: 20px;
-      font-weight: bold;
+      font-weight: 800;
+      font-size: 16px;
       width: 100%;
       cursor: pointer;
     }
 
     /* Grid for Features */
     .section-title {
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 12px;
-      font-weight: 700;
+      font-weight: 800;
+      color: var(--lavender);
     }
 
     .feature-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 15px;
     }
 
     .feature-card {
-      background-color: var(--white);
+      background-color: var(--card-dark);
+      border: 2px solid var(--deep-plum);
       border-radius: 16px;
       padding: 16px;
-      box-shadow: 0 4px 12px rgba(37, 24, 63, 0.04);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      cursor: pointer;
     }
 
     .feature-icon {
-      background-color: var(--soft-lilac);
-      width: 40px;
-      height: 40px;
+      background-color: var(--deep-plum);
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 12px;
     }
 
     .feature-card h4 {
       margin: 0 0 4px 0;
-      font-size: 14px;
-      color: var(--deep-plum);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
     }
 
     .feature-card p {
       margin: 0;
-      font-size: 11px;
-      color: #666;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
     /* Bottom Navigation */
@@ -162,31 +176,155 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: var(--white);
+      background-color: var(--card-dark);
       display: flex;
       justify-content: space-around;
       padding: 12px 0 20px 0;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+      border-top: 2px solid var(--deep-plum);
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
+      z-index: 10;
     }
 
     .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #999;
-      font-size: 11px;
+      color: var(--text-muted);
+      font-size: 12px;
       gap: 4px;
+      cursor: pointer;
     }
 
     .nav-item.active {
       color: var(--primary-purple);
-      font-weight: bold;
+      font-weight: 800;
     }
 
     .nav-icon {
+      font-size: 22px;
+    }
+
+    /* Floating Piko Character */
+    .piko-fab {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background-color: var(--primary-purple);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      box-shadow: 0 4px 15px rgba(157, 116, 227, 0.5);
+      z-index: 100;
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+      border: 3px solid var(--lavender);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Chatbot Overlay Window */
+    .chat-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(18, 10, 31, 0.95);
+      z-index: 200;
+      display: none; /* Hidden by default */
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--deep-plum);
+      margin-bottom: 15px;
+    }
+
+    .chat-header h2 {
+      margin: 0;
+      color: var(--lavender);
+      font-weight: 800;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .msg-bot, .msg-user {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .msg-bot {
+      background-color: var(--card-dark);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      border: 1px solid var(--deep-plum);
+    }
+
+    .msg-user {
+      background-color: var(--primary-purple);
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      color: white;
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      padding-bottom: 20px;
+    }
+
+    .chat-input {
+      flex-grow: 1;
+      background-color: var(--card-dark);
+      border: 2px solid var(--deep-plum);
+      color: white;
+      border-radius: 20px;
+      padding: 12px 16px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .send-btn {
+      background-color: var(--primary-purple);
+      border: none;
+      color: white;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
       font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -199,7 +337,7 @@
   </div>
 
   <!-- Main Content -->
-  <div class="dashboard">
+  <div class="dashboard" id="main-dashboard">
     <h2 class="welcome-text">Ready to study?</h2>
     <p class="subtitle">Upload your notes and let Piko do the rest.</p>
 
@@ -208,7 +346,7 @@
       <div class="upload-icon">📄✨</div>
       <h3>Transform Your Notes</h3>
       <p>Upload a PDF, Image, or DOCX to generate flashcards and mock tests instantly.</p>
-      <button class="upload-btn" onclick="alert('In Phase 2, this will open your phone files!')">
+      <button class="upload-btn" onclick="openFileUploader()">
         + Upload Document
       </button>
     </div>
@@ -217,22 +355,22 @@
     
     <!-- Tools Grid -->
     <div class="feature-grid">
-      <div class="feature-card">
+      <div class="feature-card" onclick="openFeature('Smart Quizzes')">
         <div class="feature-icon">📝</div>
         <h4>Smart Quizzes</h4>
         <p>Test your knowledge</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card" onclick="openFeature('Flashcards')">
         <div class="feature-icon">🗂️</div>
         <h4>Flashcards</h4>
         <p>Spaced repetition</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card" onclick="toggleChat()">
         <div class="feature-icon">🦉</div>
         <h4>Ask Piko</h4>
         <p>Your AI Tutor</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card" onclick="openFeature('Milestones')">
         <div class="feature-icon">🎯</div>
         <h4>Milestones</h4>
         <p>Track progress</p>
@@ -240,21 +378,89 @@
     </div>
   </div>
 
+  <!-- Floating Piko Action Button -->
+  <div class="piko-fab" onclick="toggleChat()">🦉</div>
+
+  <!-- Chatbot Overlay -->
+  <div class="chat-modal" id="chatOverlay">
+    <div class="chat-header">
+      <h2>Talk to Piko 🦉</h2>
+      <button class="close-btn" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg-bot">Hi Sadha sri! I'm Piko. I analyzed your previous notes. What shall we revise today?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="userInput" class="chat-input" placeholder="Ask Piko a question...">
+      <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
   <!-- Bottom Navigation -->
   <div class="bottom-nav">
-    <div class="nav-item active">
+    <div class="nav-item active" id="nav-home" onclick="switchNav('home')">
       <span class="nav-icon">🏠</span>
       <span>Home</span>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" id="nav-subjects" onclick="switchNav('subjects')">
       <span class="nav-icon">📚</span>
       <span>Subjects</span>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" id="nav-badges" onclick="switchNav('badges')">
       <span class="nav-icon">🏆</span>
       <span>Badges</span>
     </div>
   </div>
 
+  <!-- Javascript Logic to make everything work -->
+  <script>
+    // 1. Function to open file uploader
+    function openFileUploader() {
+      alert("Opening file picker... (This will open your phone files in the real app!)");
+    }
+
+    // 2. Function to click grid features
+    function openFeature(featureName) {
+      alert("Opening " + featureName + " module!");
+    }
+
+    // 3. Function to switch bottom tabs
+    function switchNav(tab) {
+      document.getElementById('nav-home').classList.remove('active');
+      document.getElementById('nav-subjects').classList.remove('active');
+      document.getElementById('nav-badges').classList.remove('active');
+      document.getElementById('nav-' + tab).classList.add('active');
+    }
+
+    // 4. Function to open and close Chatbot
+    function toggleChat() {
+      const chat = document.getElementById('chatOverlay');
+      if (chat.style.display === 'flex') {
+        chat.style.display = 'none';
+      } else {
+        chat.style.display = 'flex';
+      }
+    }
+
+    // 5. Function to send a message to Piko
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const messageText = input.value.trim();
+      const chatBox = document.getElementById('chatMessages');
+
+      if (messageText !== "") {
+        // Add User Message
+        chatBox.innerHTML += `<div class="msg-user">${messageText}</div>`;
+        input.value = ""; // Clear input box
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+
+        // Simulate Piko Thinking and Replying after 1 second
+        setTimeout(() => {
+          chatBox.innerHTML += `<div class="msg-bot">That's a great question! I am generating the exact answer for you right now based on your syllabus.</div>`;
+          chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+        }, 1000);
+      }
+    }
+  </script>
 </body>
 </html>
