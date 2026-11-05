@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LumiPath AI</title>
+  
+  <!-- These tools allow us to use React inside a single HTML file -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- This is our CSS (The Design & Colors) -->
+  <style>
+    :root {
+      --deep-plum: #25183F;
+      --primary-purple: #8054C7;
+      --lavender: #C5A9F5;
+      --soft-lilac: #F4EEFF;
+      --white: #FFFFFF;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--soft-lilac);
+      color: var(--deep-plum);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      width: 100%;
+      max-width: 450px;
+      box-sizing: border-box;
+    }
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 20px;
+    }
+    .lang-btn {
+      background: none;
+      border: 2px solid var(--primary-purple);
+      color: var(--primary-purple);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      background: var(--white);
+      padding: 30px 20px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(37, 24, 63, 0.1);
+      box-sizing: border-box;
+    }
+    .title {
+      color: var(--deep-plum);
+      font-size: 26px;
+      margin: 0 0 8px 0;
+    }
+    .tagline {
+      color: var(--primary-purple);
+      font-size: 14px;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    .piko-placeholder {
+      background: var(--soft-lilac);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+    }
+    .piko-avatar {
+      font-size: 40px;
+      background: var(--lavender);
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .piko-text {
+      color: var(--deep-plum);
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .selection-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+    .primary-btn {
+      background-color: var(--primary-purple);
+      color: var(--white);
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .selection-message {
+      margin-top: 20px;
+      color: var(--primary-purple);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="root"></div>
+
+  <!-- This is our React JavaScript (The Logic) -->
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [language, setLanguage] = useState('en');
+      const [userType, setUserType] = useState(null);
+
+      // Translations
+      const content = {
+        en: {
+          welcome: "Welcome to LumiPath AI",
+          tagline: "Every topic. Every milestone. Every achievement.",
+          schoolBtn: "I am a School Student",
+          collegeBtn: "I am a College Student",
+          pikoGreeting: "Hi! I'm Piko, your AI tutor. Ready to learn?",
+          langSwitch: "தமிழ் (Tamil)"
+        },
+        ta: {
+          welcome: "LumiPath AI-க்கு நல்வரவு",
+          tagline: "ஒவ்வொரு தலைப்பும். ஒவ்வொரு மைல்கல்லும். ஒவ்வொரு சாதனையும்.",
+          schoolBtn: "நான் பள்ளி மாணவர்",
+          collegeBtn: "நான் கல்லூரி மாணவர்",
+          pikoGreeting: "வணக்கம்! நான் பிகோ, உங்கள் AI ஆசிரியர். கற்க தயாரா?",
+          langSwitch: "English"
+        }
+      };
+
+      const t = content[language];
+
+      return (
+        <div className="app-container">
+          <header className="header">
+            <button className="lang-btn" onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')}>
+              {t.langSwitch}
+            </button>
+          </header>
+
+          <main className="main-content">
+            <h1 className="title">{t.welcome}</h1>
+            <p className="tagline">{t.tagline}</p>
+
+            <div className="piko-placeholder">
+              <div className="piko-avatar">🦉</div>
+              <p className="piko-text">{t.pikoGreeting}</p>
+            </div>
+
+            <div className="selection-container">
+              <button className="primary-btn" onClick={() => setUserType('school')}>
+                {t.schoolBtn}
+              </button>
+              <button className="primary-btn" onClick={() => setUserType('college')}>
+                {t.collegeBtn}
+              </button>
+            </div>
+
+            {userType && (
+              <p className="selection-message">
+                Great! You selected: {userType === 'school' ? 'School' : 'College'} Student.
+              </p>
+            )}
+          </main>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
